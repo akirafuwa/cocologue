@@ -1,0 +1,83 @@
+diff --git a/Gemfile b/Gemfile
+index 8653cbc..8187c1e 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
+ # Use Redis adapter to run Action Cable in production
+ # gem 'redis', '~> 4.0'
+ # Use ActiveModel has_secure_password
+-# gem 'bcrypt', '~> 3.1.7'
++gem 'bcrypt', '~> 3.1.7'
+ 
+ # Use ActiveStorage variant
+ # gem 'mini_magick', '~> 4.8'
+diff --git a/Gemfile.lock b/Gemfile.lock
+index a14fee4..346d842 100644
+--- a/Gemfile.lock
++++ b/Gemfile.lock
+@@ -47,6 +47,7 @@ GEM
+     archive-zip (0.12.0)
+       io-like (~> 0.3.0)
+     arel (9.0.0)
++    bcrypt (3.1.12)
+     bindex (0.7.0)
+     bootsnap (1.4.3)
+       msgpack (~> 1.0)
+@@ -206,6 +207,7 @@ PLATFORMS
+   ruby
+ 
+ DEPENDENCIES
++  bcrypt (~> 3.1.7)
+   bootsnap (>= 1.1.0)
+   byebug
+   capybara (>= 2.15)
+diff --git a/app/views/layouts/_error_messages.html.erb b/app/views/layouts/_error_messages.html.erb
+index 03f9f05..86ccfda 100644
+--- a/app/views/layouts/_error_messages.html.erb
++++ b/app/views/layouts/_error_messages.html.erb
+@@ -1,4 +1,4 @@
+-<% if model.error.any? %>
++<% if model.errors.any? %>
+   <div class="alert alert-warning">
+     <ul>
+       <% model.errors.full_messages.each do |message| %>
+diff --git a/app/views/layouts/_navbar.html.erb b/app/views/layouts/_navbar.html.erb
+index 28105d0..1bd74a9 100644
+--- a/app/views/layouts/_navbar.html.erb
++++ b/app/views/layouts/_navbar.html.erb
+@@ -12,7 +12,7 @@
+       </div>
+       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav navbar-nav navbar-right">
+-          <li><a href="#">Signup</a></li>
++          <li><%= link_to 'Signup', signup_path %></li>
+           <li><a href="#">Login</a></li>
+         </ul>
+       </div>
+diff --git a/app/views/toppages/index.html.erb b/app/views/toppages/index.html.erb
+index 9fae057..9942b6a 100644
+--- a/app/views/toppages/index.html.erb
++++ b/app/views/toppages/index.html.erb
+@@ -1,5 +1,6 @@
+ <div class="center jumbotron">
+   <div class="text-center">
+     <h1>Welcome to Cocologue</h1>
++    <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+   </div>
+ </div>
+diff --git a/config/routes.rb b/config/routes.rb
+index e6ca0bd..eb0fb0f 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -1,5 +1,10 @@
+ Rails.application.routes.draw do
+-  get 'toppages/index'
++  get 'users/show'
++  get 'users/new'
++  get 'users/create'
+   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+   root to: 'toppages#index'
++
++  get 'signup', to: 'users#new'
++  resources :users, only: [:show, :new, :create]
+ end
