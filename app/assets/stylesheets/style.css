@@ -1,0 +1,100 @@
+body {
+  font-size: 15px;
+  margin: 0 auto;
+  line-height: 1.4;
+  color: #444;
+  background: #001935;
+  font-family: Helvetica,Arial,sans-serif;
+}
+
+/* display block */
+div article section {
+  display: block;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  max-width: 502px;
+}
+
+article {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.post-wrapper {
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.post {
+  padding: 0;
+  position: relative;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.post-content {
+  padding: 20px;
+}
+
+.post-content .body-text {
+  line-height: 1.5;
+}
+
+.post-content p {
+  margin: 0;
+}
+
+.post-content p+p {
+  margin-top: 1em;
+}
+
+p {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.post-content .date {
+  font-weight: bold;
+}
+
+.post-content .body-text {
+  margin-bottom: 5%;
+  line-height: 1.6;
+}
+
+section .conditions {
+  border-top: 1px solid #e9e9ebee;
+  margin: 12px 12px 12px 0px;
+  padding: 8px 0;
+}
+
+div .condition-wrapper {
+  margin-top: 5px;
+  display: inline-flex;
+}
+
+div .condition-title {
+  margin: auto;
+  padding-right: 10px;
+}
+
+.list-group {
+  margin: 0;
+  display: inline-flex;
+}
