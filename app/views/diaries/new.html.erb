@@ -1,0 +1,6 @@
+<section id="diary_record_area">
+  <h2 class="diary_record_area">日記を書く</h2>
+  <%= form_with model: @diary, html: { style: "width: 60%;"} do |form| %>
+    <%= render "layouts/form", form: form %>
+  <% end %>
+</section>

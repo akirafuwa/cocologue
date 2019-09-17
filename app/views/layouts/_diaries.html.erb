@@ -8,37 +8,41 @@
             <p><%= diary.content %></p>
           </div>
           <section class="conditions">
-              <div class="condition-wrapper">
-                <div class="condition-title">活動量</div>
-                <ul class="list-group list-group-horizontal">
-                  <li class="list-group-item">-2</li>
-                  <li class="list-group-item">-1</li>
-                  <li class="list-group-item list-group-item-info">0</li>
-                  <li class="list-group-item">+1</li>
-                  <li class="list-group-item">+2</li>
-                </ul>
-              </div>
-              <div class="condition-wrapper">
-                <div class="condition-title">気分　</div>
-                <ul class="list-group list-group-horizontal">
-                  <li class="list-group-item list-group-item-info">-2</li>
-                  <li class="list-group-item">-1</li>
-                  <li class="list-group-item">0</li>
-                  <li class="list-group-item">+1</li>
-                  <li class="list-group-item">+2</li>
-                </ul>
-              </div>
-              <div class="condition-wrapper">
-                <div class="condition-title">食欲　</div>
-                <ul class="list-group list-group-horizontal">
-                  <li class="list-group-item">-2</li>
-                  <li class="list-group-item">-1</li>
-                  <li class="list-group-item list-group-item-info">0</li>
-                  <li class="list-group-item">+1</li>
-                  <li class="list-group-item">+2</li>
-                </ul>
-              </div>
+            <div class="condition-title">
+              <% if diary.woke_up_at %><p>起床：　<%= diary.woke_up_at.hour %>時</p><% end %>
+              <% if diary.slept_at %><p>就寝：　<%= diary.slept_at.hour %>時</p><% end %>
+            </div>
+            <div class="condition-wrapper">
+              <div class="condition-title">活動量</div>
+              <ul class="list-group list-group-horizontal">
+                <% conditions = condition_generator(diary.activity) %>
+                <% conditions.each do |key, value| %>
+                  <%= content_tag(:li, key, class: "#{class_generator(value)}") %>
+                <% end %>
+              </ul>
+            </div>
+            <div class="condition-wrapper">
+              <div class="condition-title">気分　</div>
+              <ul class="list-group list-group-horizontal">
+                <% conditions = condition_generator(diary.mood) %>
+                <% conditions.each do |key, value| %>
+                  <%= content_tag(:li, key, class: "#{class_generator(value)}") %>
+                <% end %>
+              </ul>
+            </div>
+            <div class="condition-wrapper">
+              <div class="condition-title">食欲　</div>
+              <ul class="list-group list-group-horizontal">
+                <% conditions = condition_generator(diary.appetite) %>
+                <% conditions.each do |key, value| %>
+                  <%= content_tag(:li, key, class: "#{class_generator(value)}") %>
+                <% end %>
+              </ul>
+            </div>
           </section>
+          <% if current_user == diary.user %>
+            <%= link_to "削除", diary, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+          <% end %>
         </div>
       </section>
     </div>

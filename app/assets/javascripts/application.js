@@ -13,5 +13,13 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
+//= require jquery-ui
+//= require Chart.min
 //= require activestorage
 //= require_tree .
+
+$(function() {
+  $('.datepicker').datepicker({
+    dateFormat: "yy-mm-dd"
+  });
+});

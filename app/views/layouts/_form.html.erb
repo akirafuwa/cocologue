@@ -1,0 +1,75 @@
+<div id="diary_record">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tbody>
+      <tr>
+        <th>投稿日</th>
+        <td>
+          <%= form.text_field(:diary_date, class: 'form-control datepicker') %>
+        </td>
+      </tr>
+      <tr>
+        <th>起床</th>
+        <td>
+          <%= form.time_select(:woke_up_at, { minute_step: 15 }) %>
+          <%= form.label(:woke_up_at, "時", value: "hour")  %>
+        </td>
+      </tr>
+      <tr>
+        <th>就寝</th>
+        <td>
+          <%= form.time_select(:slept_at, { minute_step: 15 }) %>
+          <%= form.label(:slept_at, "時", value: "hour")  %>
+        </td>
+      </tr>
+      <tr>
+        <th>活動量</th>
+        <td>
+          <%= form.radio_button(:activity, "-2") %>
+          <%= form.label(:activity, "-2", value: "-2")  %>
+          <%= form.radio_button(:activity, "-1") %>
+          <%= form.label(:activity, "-1", value: "-1")  %>
+          <%= form.radio_button(:activity, "0") %>
+          <%= form.label(:activity, "0", value: "0")  %>
+          <%= form.radio_button(:activity, "+1") %>
+          <%= form.label(:activity, "+1", value: "+1")  %>
+          <%= form.radio_button(:activity, "+2") %>
+          <%= form.label(:activity, "+2", value: "+2")  %>
+        </td>
+      </tr>
+      <tr>
+        <th>気分</th>
+        <td>
+          <%= form.radio_button(:mood, "-2") %>
+          <%= form.label(:mood, "-2", value: "-2")  %>
+          <%= form.radio_button(:mood, "-1") %>
+          <%= form.label(:mood, "-1", value: "-1")  %>
+          <%= form.radio_button(:mood, "0") %>
+          <%= form.label(:mood, "0", value: "0")  %>
+          <%= form.radio_button(:mood, "+1") %>
+          <%= form.label(:mood, "+1", value: "+1")  %>
+          <%= form.radio_button(:mood, "+2") %>
+          <%= form.label(:mood, "+2", value: "+2")  %>
+        </td>
+      </tr>
+      <tr>
+        <th>食欲</th>
+        <td>
+          <%= form.radio_button(:appetite, "-2") %>
+          <%= form.label(:appetite, "-2", value: "-2")  %>
+          <%= form.radio_button(:appetite, "-1") %>
+          <%= form.label(:appetite, "-1", value: "-1")  %>
+          <%= form.radio_button(:appetite, "0") %>
+          <%= form.label(:appetite, "0", value: "0")  %>
+          <%= form.radio_button(:appetite, "+1") %>
+          <%= form.label(:appetite, "+1", value: "+1")  %>
+          <%= form.radio_button(:appetite, "+2") %>
+          <%= form.label(:appetite, "+2", value: "+2")  %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group">
+    <%= form.text_area :content, class: 'form-control', rows: 5 %>
+  </div>
+    <%= form.submit '日記を投稿', class: 'btn btn-primary btn-block' %>
+</div>

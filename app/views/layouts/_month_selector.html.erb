@@ -1,0 +1,19 @@
+<section class="selected_month">
+  <h2 class="requested_month"><%= requested.year %>年<%= requested.month %>月</h2>
+  <div class="month_selector_wrapper">
+    <div class="to_last_month">
+      <% if subtracted %>
+        <button type="button" class="btn btn-light">
+          <%= link_to(subtracted[0], "/dashboard/#{subtracted[1]}") %>
+        </button>
+      <% end %>
+    </div>
+    <div class="to_next_month">
+      <% if added %>
+        <button type="button" class="btn btn-light">
+          <%= link_to(added[0], "/dashboard/#{added[1]}") %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+</section>
