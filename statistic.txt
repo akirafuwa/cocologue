@@ -1,0 +1,75 @@
+- 実現したいこと
+体調グラフをDiaryモデルの各カラムについて、
+それぞれ週ごと、月ごとに描画したい。
+
+- グラフ描画に必要なもの
+  - Diaryモデルのカラム(activity, mood, appetite)
+  - X軸の値(label, 日付) Array型
+  - Y軸の値(data, 日付におけるDiaryモデルの値) Array型
+
+- routing
+get '/statistic' to: statistic#controller
+
+- query parameter
+/statistics?column=activity&date_begin=2019-09-12&date_end=2019-09-21
+
+- StatisticsController
+  - StrongParameter
+    - QueryPrameterとして許可するキーを指定する
+
+  - QueryParameterのバリデーション*
+    - date_end, date_begin
+    - QueryParameterがformatに合っていない時はどうするのか？
+
+  - paramsのdate_begin, date_endをDateオブジェクトにparseする
+    - app/controllers/concernsにメソッドを定義
+      - paramsを引数に取り、key, valueを取り出して年月にマッチしたものをparseさせる
+      - クラスメソッドなのか？
+
+  - インスタンス変数@reportにグラフ描画に必要なデータを渡してViewで取り出せるようにする。
+  - グラフの描画に必要なデータを作成するためには？
+    - Diaryモデルのカラム
+      - params[:column]
+
+    - X軸
+      - params[:date_begin]..params[:date_end]
+
+    - Y軸
+      - X軸の値(日付), カラムから値を検索し配列にして返す
+      - X軸の値をひとつずつ取り出す
+
+  - Reportインスタンスの属性
+    - column(Symbol)
+    - date_begin(Date)
+    - date_end(Date)
+    - x_axis(Array)
+    - y_axis(Array)
+    - period(Symbol)
+    * date_begin, date_endがnilの時は当日の週間にする
+    * columnがnilの時,activityにする
+
+- View
+  - js
+    - label: @report.x_axis
+    - data: @report.y_axis
+
+  - リンクの生成
+    - 時間軸
+      - weekly
+        - to_next_week
+          - @report.column
+          - @report.date_begin + 1 week
+          - @report.date_end  + 1 week
+        - to_week_ago
+          - @report.column
+          - @report.date_begin - 1 week
+          - @report.date_end - 1 week
+      - monthly
+        - to_next_month
+        - to_month_ago
+
+    - カラム軸
+      - @report.columnを指定されたカラムに上書き
+      -固定
+        - @report.date_begin
+        - @report.date_end

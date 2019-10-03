@@ -1,6 +1,6 @@
 class DashboardsController < ApplicationController
   before_action :require_user_logged_in, :set_current_user
-
+  
   def index
     if logged_in?
       @diary = current_user.diaries.build

@@ -1,0 +1,50 @@
+<h3><%= @report.column %></h3>
+
+
+<%= link_to "前", statistics_path(column: @report.column, date_begin: @ex_begin, date_end: @report.date_begin - 1, period: @report.period) %>
+<p><%= @report.date_begin %>~<%= @report.date_end %></p>
+<%= link_to "次", statistics_path(column: @report.column, date_begin: @report.date_end + 1, date_end: @next_end, period: @report.period) %>
+
+<canvas id="myChart" style="width:600; height:400;"></canvas>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: <%= @report.x_axis.to_json.html_safe %>,
+        datasets: [{
+            label: <%= @report.column.to_json.html_safe %>,
+            data: <%= @report.y_axis.to_json.html_safe %>,
+            fill: false,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    max: 2,
+                    min: -2,
+                    stepSize: 1.0
+                }
+            }]
+        }
+    }
+});
+</script>

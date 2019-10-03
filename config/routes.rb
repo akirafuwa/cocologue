@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     year_month:   /\d{4}-\d{1,2}/
   }
 
+  get 'statistics', to: 'statistics#report'
+
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'

@@ -37,6 +37,7 @@ gem 'pry-byebug', group: :development
 gem 'record_tag_helper', '~> 1.0'
 
 
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
