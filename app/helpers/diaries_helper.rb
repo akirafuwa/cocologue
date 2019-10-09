@@ -1,5 +1,4 @@
 module DiariesHelper
-
   def condition_generator(value)
     conditions = {}
     numbers = [-2, -1, 0, 1, 2]
@@ -16,5 +15,4 @@ module DiariesHelper
   def class_generator(bool)
     bool ? 'list-group-item list-group-item-info' : 'list-group-item'
   end
-
 end

@@ -1,35 +1,20 @@
 module StatisticsHelper
-  def previous_period_generator(report)
-    date_begin_and_end = []
-    if report.period == :month
-      date_begin = report.date_begin << 1
-      date_end = report.date_end << 1
-    elsif report.period == :week
-      date_begin = report.date_begin - 1.week
-      date_end = report.date_end - 1.week
+  def to_ex_or_next_period(date, period)
+    case period
+    when :months
+      if date == date.beginning_of_month
+        date.prev_month.beginning_of_month
+      else date == date.end_of_month
+        date.next_month.end_of_month
+      end
+    when :weeks
+      if date.cwday == 1
+        date.ago(7.days)
+      else date.cwday == 7
+        date.since(7.days)
+      end
     else
-      date_begin = report.date_begin - 1.week
-      date_end = report.date_end - 1.week
+      raise "pass valid argument"
     end
-    date_begin_and_end << date_begin
-    date_begin_and_end << date_end
-    date_begin_and_end
-  end
-
-  def next_period_generator(report)
-    date_begin_and_end = []
-    if report.period == :month
-      date_begin = report.date_begin << -1
-      date_end = report.date_end << -1
-    elsif report.period == :week
-      date_begin = report.date_begin + 1.week
-      date_end = report.date_end + 1.week
-    else
-      date_begin = report.date_begin + 1.week
-      date_end = report.date_end + 1.week
-    end
-    date_begin_and_end << date_begin
-    date_begin_and_end << date_end
-    date_begin_and_end
   end
 end

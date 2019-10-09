@@ -36,6 +36,8 @@ gem 'faker'
 gem 'pry-byebug', group: :development
 gem 'record_tag_helper', '~> 1.0'
 
+gem 'chartjs-ror'
+gem 'groupdate'
 
 
 # Use ActiveStorage variant

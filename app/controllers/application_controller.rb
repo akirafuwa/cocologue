@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     include SessionsHelper
     include DashboardHelper
     include DiariesHelper
-    include ParseDateParams
+    include ParseParams
     include StatisticsHelper
 
     private

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   }
 
   get 'statistics', to: 'statistics#report'
+  get 'statistics/:column/period/:week_or_month', to: 'statistics#select_period', constraints: Constraint::SelectPeriodConstraint.new
+  get 'statistics/:column/from/:date_begin/to/:date_end', to: 'statistics#select_date', constraints: Constraint::SelectDateConstraint.new
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

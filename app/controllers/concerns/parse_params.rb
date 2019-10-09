@@ -8,15 +8,13 @@ module ValidateDateParams
   end
 end
 
-module ParseDateParams
+module ParseParams
   extend ActiveSupport::Concern
   include ValidateDateParams
 
-  def parse_date_params(params_hash)
-    params_hash.each do |key, value|
-      if valid_date?(value)
-        params_hash[key] = Date.strptime(value, '%Y-%m-%d')
-      end
+  def parse_date(date_string)
+    if valid_date?(date_string)
+      params = Date.strptime(date_string, '%Y-%m-%d')
     end
   end
 end
