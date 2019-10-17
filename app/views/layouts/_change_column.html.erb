@@ -1,0 +1,3 @@
+<% @COLUMNS.keys.each do |key| %>
+  <%= link_to "#{@COLUMNS[key]}", "#{report.to_column(key)}" %>
+<% end %>

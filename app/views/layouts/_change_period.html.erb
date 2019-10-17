@@ -1,0 +1,6 @@
+<% if report.class.method_defined? :to_monthly %>
+  <%= link_to "月間", "#{report.to_monthly}" %>
+<% end %>
+<% if report.class.method_defined? :to_weekly %>
+  <%= link_to "週間", "#{report.to_weekly}" %>
+<% end %>

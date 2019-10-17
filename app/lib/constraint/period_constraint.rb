@@ -1,9 +1,10 @@
 module Constraint
-  class SelectPeriodConstraint
+  class PeriodConstraint
     PERIODS = ['thisWeek', 'thisMonth', 'prevWeek', 'prevMonth']
     
     def matches?(request)
-      PERIODS.include?(request.query_parameters['week_or_month'])
+      selected_period = request.fullpath.split('/').last
+      PERIODS.include?(selected_period)
     end
   end
 end

@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
   user = User.last
-  diary_date_array = (Date.parse('2019-07-01')..Date.parse('2019-09-30')).to_a
+  diary_date_array = (Date.parse('2019-10-01')..Date.parse('2019-10-30')).to_a
 
   diary_date_array.each do |diary_date|
     content = Faker::Books::Lovecraft.paragraph(sentence_count: 4)

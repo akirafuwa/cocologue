@@ -1,10 +1,11 @@
-<h3><%= @column %></h3>
+<h3><%= @COLUMNS[@column] %></h3>
 
-<
+<%= render 'layouts/to_next_or_prev_period', report: @report %>
+<br />
+<%= render 'layouts/change_column', report: @report, COLUMNS: @COLUMNS %>
+<br />
+<%= render 'layouts/change_period', report: @report %>
 
-<%= link_to "前", statistics_path(column: @column, date_begin: to_ex_or_next_period(@date_begin, @period), date_end: @date_begin - 1, period: @period) %>
-<p><%= @date_begin %>~<%= @date_end %></p>
-<%= link_to "次", statistics_path(column: @column, date_begin: @date_end + 1, date_end: to_ex_or_next_period(@date_end,@period), period: @period) %>
 
 <canvas id="myChart" style="width:600; height:400;"></canvas>
 <script>
@@ -12,10 +13,10 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: <%= @chart[:labels].to_json.html_safe %>,
+        labels: <%= @report.chart[:labels].to_json.html_safe %>,
         datasets: [{
             label: <%= @column.to_json.html_safe %>,
-            data: <%= @chart[:datasets].to_json.html_safe %>,
+            data: <%= @report.chart[:datasets].to_json.html_safe %>,
             fill: false,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -33,7 +34,7 @@ var myChart = new Chart(ctx, {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 3
         }]
     },
     options: {
