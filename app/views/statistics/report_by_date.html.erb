@@ -2,51 +2,111 @@
 
 <%= render 'layouts/to_next_or_prev_period', report: @report %>
 <br />
-<%= render 'layouts/change_column', report: @report, COLUMNS: @COLUMNS %>
-<br />
 <%= render 'layouts/change_period', report: @report %>
+<br  />
 
-
+<div class="chart-toggles">
+    <a class="activity enabled">活動量</a>
+    <a class="mood enabled">気分</a>
+    <a class="appetite enabled">食欲</a>
+</div>
 <canvas id="myChart" style="width:600; height:400;"></canvas>
+
 <script>
 var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
+
+var options = {
+  responsive: true,
+  scales: {
+    yAxes: [{
+      ticks: {
+        max: 2,
+        min: -2,
+        stepSize: 1.0
+      }
+    }]
+  }
+};
+
+var chartlabel = <%= @report.chart[:labels].to_json.html_safe %>;
+
+var enableCheck = function() {
+  ACTOn = jQuery('.activity').hasClass('enabled');
+  MOOOn = jQuery('.mood').hasClass('enabled');
+  APPOn = jQuery('.appetite').hasClass('enabled');
+  if (!(ACTOn)) {
+    ACT = {
+      label: "",
+
+    };
+  } else {
+    ACT = {
+      label: "活動量",
+      borderColor: "#ff7493",
+      backgroundColor: "#ff7493",
+      fill: false,
+      borderWidth: 3,
+      data: <%= @report.chart[:datasets][:activity].to_json.html_safe %>
+    };
+  };
+  if (!(MOOOn)) {
+    MOO = {
+      label: "",
+    };
+  } else {
+    MOO = {
+      label: "気分",
+      borderColor: "#00afff",
+      backgroundColor: "#00afff",
+      fill: false,
+      borderWidth: 3,
+      data: <%= @report.chart[:datasets][:mood].to_json.html_safe %>
+    };
+  };
+  if (!(APPOn)) {
+    APP = {
+      label: "",
+    };
+  } else {
+    APP = {
+      label: "食欲",
+      borderColor: "#ffa600",
+      backgroundColor: "#ffa600",
+      fill: false,
+      borderWidth: 3,
+      data: <%= @report.chart[:datasets][:appetite].to_json.html_safe %>
+    };
+  };
+};
+
+jQuery(document).ready(function() {
+  enableCheck();
+  data = {
+    labels: chartlabel,
+    datasets: [ ACT, MOO, APP ]
+  };
+
+  baseChart = new Chart(ctx , {
     type: 'line',
-    data: {
-        labels: <%= @report.chart[:labels].to_json.html_safe %>,
-        datasets: [{
-            label: <%= @column.to_json.html_safe %>,
-            data: <%= @report.chart[:datasets].to_json.html_safe %>,
-            fill: false,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 3
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    max: 2,
-                    min: -2,
-                    stepSize: 1.0
-                }
-            }]
-        }
-    }
+    data: data,
+    options: options
+  });
+  currentChart = baseChart;
 });
+
+jQuery('.chart-toggles a').click(function() {
+  currentChart.destroy();
+  jQuery(this).toggleClass('enabled');
+  enableCheck();
+  data = {
+    labels: chartlabel,
+    datasets: [ ACT, MOO, APP ]
+  };
+  newChart = new Chart(ctx , {
+    type: 'line',
+    data: data,
+    options: options,
+  });
+  currentChart = newChart;
+})
 </script>

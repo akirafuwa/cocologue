@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     year_month:   /\d{4}-\d{1,2}/
   }
 
-  get 'statistics/:column/period/:period', to: 'statistics#report_by_period' , constraints:  Constraint::PeriodConstraint.new
-  get 'statistics/:column/from/:date_begin/to/:date_end', to: 'statistics#report_by_date', constraints: Constraint::DateConstraint.new
+  get 'statistics/period/:period', to: 'statistics#report_by_period' , constraints:  Constraint::PeriodConstraint.new
+  get 'statistics/from/:date_begin/to/:date_end', to: 'statistics#report_by_date', constraints: Constraint::DateConstraint.new
   get 'statistics', to: 'statistics#report_by_period'
 
   get 'login', to: 'sessions#new'
