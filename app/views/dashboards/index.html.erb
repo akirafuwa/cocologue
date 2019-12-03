@@ -1,11 +1,7 @@
-<% if logged_in? %>
-  <aside class="col-md-4">
-    <%= link_to "日記を書く", new_diary_path, class: 'btn btn-secondary btn-lg' %>
-  </aside>
-  <div class="main col-md-8">
-    <%= render 'layouts/month_selector', { requested: @requested,
-                                           subtracted: @subtracted,
-                                           added: @added } %>
-    <%= render 'layouts/diaries', diaries: @diaries %>
-  </div>
-<% end %>
+<header>
+  <%= render 'layouts/navbar', title: "日記一覧" %>
+</header>
+<%= render 'layouts/month_selector', { requested: @requested,
+                                       subtracted: @subtracted,
+                                       added: @added } %>
+<%= render 'layouts/diaries', diaries: @diaries %>

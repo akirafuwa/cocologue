@@ -1,19 +1,17 @@
-<section class="selected_month">
-  <h2 class="requested_month"><%= requested.year %>年<%= requested.month %>月</h2>
-  <div class="month_selector_wrapper">
-    <div class="to_last_month">
+<div class="row">
+  <div class="dashboard-period-popdown">
+    <div class="period-popdown-controls right">
       <% if subtracted %>
-        <button type="button" class="btn btn-light">
-          <%= link_to(subtracted[0], "/dashboard/#{subtracted[1]}") %>
-        </button>
+        <%= link_to '<', "/dashboard/#{subtracted[1]}", class: "prev", style: "z-index: 10; position: relative;" %>
+      <% else %>
+        <p href="#" class="prev" style="z-index: 10; position: relative;">&lt;</p>
       <% end %>
-    </div>
-    <div class="to_next_month">
+      <p class="current" style="z-index: 10; position: relative;"><%= requested.year %>年<%= requested.month %>月</p>
       <% if added %>
-        <button type="button" class="btn btn-light">
-          <%= link_to(added[0], "/dashboard/#{added[1]}") %>
-        </button>
+        <%= link_to '>', "/dashboard/#{added[1]}", class: "next", style: "z-index: 10; position: relative;" %>
+      <% else %>
+        <p href="#" class="next" style="z-index: 10; position: relative;">&gt;</p>
       <% end %>
     </div>
   </div>
-</section>
+</div>

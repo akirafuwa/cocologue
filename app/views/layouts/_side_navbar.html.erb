@@ -1,0 +1,42 @@
+  <!-- Sidebar navigation -->
+  <div class="side-nav fixed" style="width: 240px;">
+    <ul class="custom-scrollbar list-unstyled ps ps--active-y" style="max-height:100vh; padding-bottom:90px">
+      <!-- Logo -->
+      <li class="logo-sn d-block">
+        <div class="text-center">
+          <!-- img挿入 -->
+          <%= link_to 'Cocologue', root_path, class: "pl-0" %>
+        </div>
+      </li>
+      <!--./ Logo -->
+      <!-- Sidebar navigation links -->
+      <li>
+        <ul class="nav-items">
+          <% if logged_in? %>
+            <li class="nav-item">
+              <%= link_to '日記一覧', dashboard_path, class: "nav-item-heade" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '日記を書く', new_diary_path, class: "nav-item-header" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '体調グラフ', statistics_path, class: "nav-item-header" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ログアウト', logout_path, method: :delete, class: "nav-item-header" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'ログイン', login_path, class: "nav-item-header" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'サインアップ', signup_path, class: "nav-item-header" %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <!--./ Sidebar navigation links -->
+    </ul>
+  </div>
+  <!--./ Sidebar navigation -->
+  

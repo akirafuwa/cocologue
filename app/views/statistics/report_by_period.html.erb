@@ -1,10 +1,9 @@
-<h3><%= @COLUMNS[@column] %></h3>
+<header>
+  <%= render 'layouts/navbar', title: "体調グラフ" %>
+</header>
 
 <%= render 'layouts/to_next_or_prev_period', report: @report %>
 <br />
-<%= render 'layouts/change_column', report: @report, COLUMNS: @COLUMNS %>
-<br />
-<%= render 'layouts/change_period', report: @report %>
 
 
 <canvas id="myChart" style="width:600; height:400;"></canvas>

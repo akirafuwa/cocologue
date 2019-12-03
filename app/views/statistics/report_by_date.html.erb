@@ -1,15 +1,10 @@
-<h3><%= @COLUMNS[@column] %></h3>
+<header>
+  <%= render 'layouts/navbar', title: "体調グラフ" %>
+</header>
 
 <%= render 'layouts/to_next_or_prev_period', report: @report %>
 <br />
-<%= render 'layouts/change_period', report: @report %>
-<br  />
 
-<div class="chart-toggles">
-    <a class="activity enabled">活動量</a>
-    <a class="mood enabled">気分</a>
-    <a class="appetite enabled">食欲</a>
-</div>
 <canvas id="myChart" style="width:600; height:400;"></canvas>
 
 <script>

@@ -14,12 +14,20 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
-
-    <div class="container">
-      <%= render 'layouts/flash_messages' %>
-
-      <%= yield %>
+    <!-- navbar -->
+    <header>
+      <%= render 'layouts/side_navbar' %>
+    </header>
+    <!--/ navbar -->
+    <!-- Main -->
+    <div class="main">
+      <div class="main-wrapper">
+        <div class="container-fluid">
+          <%= render 'layouts/flash_messages' %>
+          <%= yield %>
+        </div>
+      </div>
     </div>
+    <!-- /Main -->
   </body>
 </html>

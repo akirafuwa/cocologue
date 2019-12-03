@@ -8,20 +8,6 @@
         </td>
       </tr>
       <tr>
-        <th>起床</th>
-        <td>
-          <%= form.time_select(:woke_up_at, { minute_step: 15 }) %>
-          <%= form.label(:woke_up_at, "時", value: "hour")  %>
-        </td>
-      </tr>
-      <tr>
-        <th>就寝</th>
-        <td>
-          <%= form.time_select(:slept_at, { minute_step: 15 }) %>
-          <%= form.label(:slept_at, "時", value: "hour")  %>
-        </td>
-      </tr>
-      <tr>
         <th>活動量</th>
         <td>
           <%= form.radio_button(:activity, "-2") %>
