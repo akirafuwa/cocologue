@@ -1,11 +1,28 @@
-<header>
-  <%= render 'layouts/navbar', title: "体調グラフ" %>
-</header>
-
-<%= render 'layouts/to_next_or_prev_period', report: @report %>
-<br />
-
-<canvas id="myChart" style="width:600; height:400;"></canvas>
+<main class="content-main">
+  <section class="content-section">
+    <section class="basesection">
+      <div class="basesection-header">
+        <div class="sectiontitle">
+          <div class="sectiontitle-caption">
+            <p>体調グラフ</p>
+          </div>
+        </div>
+      </div>
+      <div class="basesection-period">
+        <%= render 'layouts/to_next_or_prev_period', report: @report %>
+        <%= render 'layouts/change_period', report: @report %>
+      </div>
+      <div class="basesection-card basesection-contents">
+        <canvas id="myChart" style="width:100%; height:60%;"></canvas>
+        <div class="chart-toggles">
+            <a class="activity enabled">活動量</a>
+            <a class="mood enabled">気分</a>
+            <a class="appetite enabled">食欲</a>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
 
 <script>
 var ctx = document.getElementById("myChart").getContext('2d');

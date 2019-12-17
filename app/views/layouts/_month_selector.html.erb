@@ -1,17 +1,15 @@
-<div class="row">
-  <div class="dashboard-period-popdown">
-    <div class="period-popdown-controls right">
-      <% if subtracted %>
-        <%= link_to '<', "/dashboard/#{subtracted[1]}", class: "prev", style: "z-index: 10; position: relative;" %>
-      <% else %>
-        <p href="#" class="prev" style="z-index: 10; position: relative;">&lt;</p>
-      <% end %>
-      <p class="current" style="z-index: 10; position: relative;"><%= requested.year %>年<%= requested.month %>月</p>
-      <% if added %>
-        <%= link_to '>', "/dashboard/#{added[1]}", class: "next", style: "z-index: 10; position: relative;" %>
-      <% else %>
-        <p href="#" class="next" style="z-index: 10; position: relative;">&gt;</p>
-      <% end %>
-    </div>
+<div class="dashboard-period-popdown">
+  <div class="period-popdown-controls right">
+    <% if subtracted %>
+      <%= link_to '<', "/dashboard/#{subtracted[1]}", class: "prev", style: "z-index: 10; position: relative;" %>
+    <% else %>
+      <p href="#" class="prev" style="z-index: 10; position: relative;">&lt;</p>
+    <% end %>
+    <p class="current" style="z-index: 10; position: relative;"><%= requested.year %>年<%= requested.month %>月</p>
+    <% if added %>
+      <%= link_to '>', "/dashboard/#{added[1]}", class: "next", style: "z-index: 10; position: relative;" %>
+    <% else %>
+      <p href="#" class="next" style="z-index: 10; position: relative;">&gt;</p>
+    <% end %>
   </div>
 </div>

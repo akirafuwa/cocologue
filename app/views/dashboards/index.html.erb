@@ -1,7 +1,19 @@
-<header>
-  <%= render 'layouts/navbar', title: "日記一覧" %>
-</header>
-<%= render 'layouts/month_selector', { requested: @requested,
-                                       subtracted: @subtracted,
-                                       added: @added } %>
-<%= render 'layouts/diaries', diaries: @diaries %>
+<main class="content-main">
+  <section class="content-section">
+    <section class="basesection">
+      <div class="basesection-header">
+        <div class="sectiontitle">
+          <div class="sectiontitle-caption">
+            <p>日記一覧</p>
+          </div>
+        </div>
+      </div>
+      <div class="basesection-period">
+        <%= render 'layouts/month_selector', added: @added, subtracted: @subtracted, requested: @requested %>
+      </div>
+      <div class="basesection-card basesection-contents">
+        <%= render 'layouts/diaries', diaries: @diaries %>
+      </div>
+    </section>
+  </section>
+</main>

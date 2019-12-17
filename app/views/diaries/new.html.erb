@@ -1,8 +1,18 @@
-<header>
-  <%= render 'layouts/navbar', title: "日記を書く" %>
-</header>
-<section id="diary_record_area">
-  <%= form_with model: @diary, html: { style: "width: 60%;"} do |form| %>
-    <%= render "layouts/form", form: form %>
-  <% end %>
-</section>
+<main class="content-main">
+  <section class="content-section">
+    <section class="basesection">
+      <div class="basesection-header">
+        <div class="sectiontitle">
+          <div class="sectiontitle-caption">
+            <p>日記を書く</p>
+          </div>
+        </div>
+      </div>
+      <div id="diary_record_area" class="basesection-card basesection-contents">
+        <%= form_with model: @diary, html: { style: "width: 100%; padding: 0 10px;"} do |form| %>
+          <%= render "layouts/form", form: form %>
+        <% end %>
+      </div>
+    </section>
+  </section>
+</main>

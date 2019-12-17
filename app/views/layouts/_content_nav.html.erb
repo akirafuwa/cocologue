@@ -1,0 +1,18 @@
+<nav class="content-nav">
+  <div class="drawer-menu">
+    <ul>
+      <li>
+        <%= link_to '日記一覧', dashboard_path %>
+      </li>
+      <li>
+        <%= link_to '日記を書く', new_diary_path %>
+      </li>
+      <li>
+        <%= link_to '体調グラフ', statistics_path %>
+      </li>
+      <li>
+        <%= link_to 'ログアウト', logout_path, method: :delete %>
+      </li>
+    </ul>
+  </div>
+</nav>
