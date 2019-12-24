@@ -12,8 +12,8 @@
         <%= render 'layouts/to_next_or_prev_period', report: @report %>
         <%= render 'layouts/change_period', report: @report %>
       </div>
-      <div class="basesection-card basesection-contents">
-        <canvas id="myChart" style="width:100%; height:60%;"></canvas>
+      <div class="basesection-card basesection-contents statistics">
+        <canvas id="myChart" style="width:100%; height:60vh;"></canvas>
         <div class="chart-toggles">
             <a class="activity enabled">活動量</a>
             <a class="mood enabled">気分</a>
@@ -25,6 +25,7 @@
 </main>
 
 <script>
+
 var ctx = document.getElementById("myChart").getContext('2d');
 
 var options = {
@@ -93,6 +94,7 @@ var enableCheck = function() {
 
 jQuery(document).ready(function() {
   enableCheck();
+
   data = {
     labels: chartlabel,
     datasets: [ ACT, MOO, APP ]
@@ -107,18 +109,15 @@ jQuery(document).ready(function() {
 });
 
 jQuery('.chart-toggles a').click(function() {
-  currentChart.destroy();
   jQuery(this).toggleClass('enabled');
   enableCheck();
   data = {
     labels: chartlabel,
     datasets: [ ACT, MOO, APP ]
   };
-  newChart = new Chart(ctx , {
-    type: 'line',
-    data: data,
-    options: options,
-  });
-  currentChart = newChart;
+
+  currentChart.data = data;
+  currentChart.options = options;
+  currentChart.update();
 })
 </script>
