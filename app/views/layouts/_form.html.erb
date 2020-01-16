@@ -52,10 +52,15 @@
           <%= form.label(:appetite, "+2", value: "+2")  %>
         </td>
       </tr>
+      <tr>
+        <th>本文</th>
+        <td>
+          <div class="form-group">
+            <%= form.text_area :content, class: 'form-control', rows: 5 %>
+          </div>
+        </td>
+      </tr>
     </tbody>
   </table>
-  <div class="form-group">
-    <%= form.text_area :content, class: 'form-control', rows: 5 %>
-  </div>
     <%= form.submit '日記を投稿', class: 'btn btn-primary btn-block' %>
 </div>

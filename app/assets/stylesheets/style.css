@@ -264,6 +264,10 @@ section:last-child {
 }
 
 /* Login form */
+.text-center {
+  width: 100%;
+}
+
 .login-form {
   margin: 0 auto !important;
 }

@@ -7,13 +7,15 @@ class DiariesController < ApplicationController
   end
 
   def create
-    @diary = current_user.diaries.build(diary_params)
-    if @diary.save
-      flash[:success] = '日記が正常に投稿されました'
-      redirect_to "/dashboard/#{@diary.diary_date.strftime("%Y-%m")}"
-    else
-      flash.now[:danger] = '日記が投稿されませんでした'
-      render template: "dashboards/index"
+    begin
+      @diary = current_user.diaries.build(diary_params)
+      if @diary.save
+        flash[:success] = '日記が正常に投稿されました'
+        redirect_to "/dashboard/#{@diary.diary_date.strftime("%Y-%m")}"
+      end
+    rescue ActiveRecord::RecordNotUnique
+      flash.now[:danger] = 'メッセージの投稿に失敗しました。'
+      render 'diaries/new'
     end
   end
 

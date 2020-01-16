@@ -2,30 +2,34 @@
   <div class="l-header-contents">
     <!-- スマホ/PC 両方-->
     <div class="l-header-contents-flex">
-      <div id="sidebarCollapse" class="humberger-toggle humberger">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <% if logged_in? %>
+        <div id="sidebarCollapse" class="humberger-toggle humberger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      <% end %>
       <a href="/" class="header-contents-logo">
         <p>COCOLOGUE</p>
       </a>
     </div>
-    <nav id="sidebar">
-      <ul class="sidebar-menu">
-        <li>
-          <%= link_to '日記一覧', dashboard_path %>
-        </li>
-        <li>
-          <%= link_to '日記を書く', new_diary_path %>
-        </li>
-        <li>
-          <%= link_to '体調グラフ', "/statistics/period/thisWeek" %>
-        </li>
-        <li>
-          <%= link_to 'ログアウト', logout_path, method: :delete %>
-        </li>
-      </ul>
-    </nav>
+    <% if logged_in? %>
+      <nav id="sidebar">
+        <ul class="sidebar-menu">
+          <li>
+            <%= link_to '日記一覧', dashboard_path %>
+          </li>
+          <li>
+            <%= link_to '日記を書く', new_diary_path %>
+          </li>
+          <li>
+            <%= link_to '体調グラフ', "/statistics/period/thisWeek" %>
+          </li>
+          <li>
+            <%= link_to 'ログアウト', logout_path, method: :delete %>
+          </li>
+        </ul>
+      </nav>
+    <% end %>
   </div>
 </div>

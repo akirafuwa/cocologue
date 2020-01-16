@@ -8,17 +8,8 @@
           </div>
         </div>
       </div>
-      <div id="diary_record_area" class="basesection-card basesection-contents">
-        <%= form_with model: @diary, html: { style: "width: 100%; padding: 0 10px;"} do |form| %>
-          <% if @diary.errors.any? %>
-            <div class="alert alert-warning">
-              <ul>
-                <% @diary.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
+      <div id="diary_record_area" class="basesection-card basesection-contents" data-no-turbolink>
+        <%= form_with model: @diary, html: { style: "width: 100%; padding: 0 10px;"}, local: true do |form| %>
           <%= render "layouts/form", form: form %>
         <% end %>
       </div>
