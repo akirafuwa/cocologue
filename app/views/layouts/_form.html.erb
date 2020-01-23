@@ -8,7 +8,7 @@
         </td>
       </tr>
       <tr>
-        <th>活動量</th>
+        <th>活動</th>
         <td>
           <%= form.radio_button(:activity, "-2") %>
           <%= form.label(:activity, "-2", value: "-2")  %>
@@ -56,7 +56,7 @@
         <th>本文</th>
         <td>
           <div class="form-group">
-            <%= form.text_area :content, class: 'form-control', rows: 5 %>
+            <%= form.text_area :content, class: 'form-control', rows: 5, placeholder: '１日を振り返ってみましょう' %>
           </div>
         </td>
       </tr>

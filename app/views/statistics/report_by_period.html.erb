@@ -9,15 +9,19 @@
         </div>
       </div>
       <div class="basesection-period">
-        <%= render 'layouts/to_next_or_prev_period', report: @report %>
-        <%= render 'layouts/change_period', report: @report %>
+        <div class="dashboard-period-popdown">
+          <div class="period-popdown-controls right">
+              <%= render 'layouts/to_next_or_prev_period', report: @report %>
+              <%= render 'layouts/change_period', report: @report %>
+          </div>
+        </div>  
       </div>
       <div class="basesection-card basesection-contents statistics">
-        <canvas id="myChart" style="width:100%; height:100%;"></canvas>
+        <canvas id="myChart" style="width:100%;"></canvas>
         <div class="chart-toggles">
-            <a class="activity enabled">活動量</a>
-            <a class="mood enabled">気分</a>
-            <a class="appetite enabled">食欲</a>
+            <a class="activity enabled btn btn-danger btn-lg active">活動量</a>
+            <a class="mood enabled btn btn-info btn-lg active">気分</a>
+            <a class="appetite enabled btn btn-success btn-lg active">食欲</a>
         </div>
       </div>
     </section>
@@ -27,19 +31,7 @@
 <script>
 var ctx = document.getElementById("myChart").getContext('2d');
 
-
-var options = {
-  responsive: true,
-  scales: {
-    yAxes: [{
-      ticks: {
-        max: 2,
-        min: -2,
-        stepSize: 1.0
-      }
-    }]
-  }
-};
+var options = <%= @report.chart_options.to_json.html_safe %>;
 
 var chartlabel = <%= @report.chart[:labels].to_json.html_safe %>;
 
@@ -55,8 +47,8 @@ var enableCheck = function() {
   } else {
     ACT = {
       label: "活動量",
-      borderColor: "#ff7493",
-      backgroundColor: "#ff7493",
+      borderColor: "#DC3445",
+      backgroundColor: "#DC3445",
       fill: false,
       borderWidth: 3,
       data: <%= @report.chart[:datasets][:activity].to_json.html_safe %>
@@ -69,8 +61,8 @@ var enableCheck = function() {
   } else {
     MOO = {
       label: "気分",
-      borderColor: "#00afff",
-      backgroundColor: "#00afff",
+      borderColor: "#16A2B8",
+      backgroundColor: "#16A2B8",
       fill: false,
       borderWidth: 3,
       data: <%= @report.chart[:datasets][:mood].to_json.html_safe %>
@@ -83,8 +75,8 @@ var enableCheck = function() {
   } else {
     APP = {
       label: "食欲",
-      borderColor: "#ffa600",
-      backgroundColor: "#ffa600",
+      borderColor: "#27A744",
+      backgroundColor: "#27A744",
       fill: false,
       borderWidth: 3,
       data: <%= @report.chart[:datasets][:appetite].to_json.html_safe %>
@@ -109,7 +101,7 @@ jQuery(document).ready(function() {
 });
 
 jQuery('.chart-toggles a').click(function() {
-  jQuery(this).toggleClass('enabled');
+  jQuery(this).toggleClass('enabled active');
   enableCheck();
   data = {
     labels: chartlabel,
@@ -119,5 +111,5 @@ jQuery('.chart-toggles a').click(function() {
   currentChart.data = data;
   currentChart.options = options;
   currentChart.update();
-})
+});
 </script>

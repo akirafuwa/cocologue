@@ -8,39 +8,48 @@
             <p><%= diary.content %></p>
           </div>
           <section class="conditions">
-            <div class="condition-wrapper">
-              <div class="condition-title">活動量</div>
-              <ul class="list-group list-group-horizontal">
-                <% conditions = condition_generator(diary.activity) %>
-                <% conditions.each do |key, value| %>
-                  <%= content_tag(:li, key, class: "#{class_generator(value)}") %>
-                <% end %>
-              </ul>
-            </div>
-            <div class="condition-wrapper">
-              <div class="condition-title">気分　</div>
-              <ul class="list-group list-group-horizontal">
-                <% conditions = condition_generator(diary.mood) %>
-                <% conditions.each do |key, value| %>
-                  <%= content_tag(:li, key, class: "#{class_generator(value)}") %>
-                <% end %>
-              </ul>
-            </div>
-            <div class="condition-wrapper">
-              <div class="condition-title">食欲　</div>
-              <ul class="list-group list-group-horizontal">
-                <% conditions = condition_generator(diary.appetite) %>
-                <% conditions.each do |key, value| %>
-                  <%= content_tag(:li, key, class: "#{class_generator(value)}") %>
-                <% end %>
-              </ul>
-            </div>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <th>活動</th>
+                    <td>
+                      <ul class="list-group list-group-horizontal">
+                        <% conditions = condition_generator(diary.activity) %>
+                        <% conditions.each do |key, value| %>
+                          <%= content_tag(:li, key, class: "#{class_generator(value)}") %>
+                        <% end %>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>気分</th>
+                    <td>
+                      <ul class="list-group list-group-horizontal">
+                        <% conditions = condition_generator(diary.mood) %>
+                        <% conditions.each do |key, value| %>
+                          <%= content_tag(:li, key, class: "#{class_generator(value)}") %>
+                        <% end %>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>食欲</th>
+                    <td>
+                      <ul class="list-group list-group-horizontal">
+                        <% conditions = condition_generator(diary.appetite) %>
+                        <% conditions.each do |key, value| %>
+                          <%= content_tag(:li, key, class: "#{class_generator(value)}") %>
+                        <% end %>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+            <% if current_user == diary.user %>
+              <%= link_to "削除", diary, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+            <% end %>
           </section>
-          <% if current_user == diary.user %>
-            <%= link_to "削除", diary, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
-          <% end %>
         </div>
-      </section>
     </div>
   </article>
 <% end %>

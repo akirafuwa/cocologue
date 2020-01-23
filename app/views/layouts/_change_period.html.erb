@@ -1,10 +1,13 @@
-<% if report.class.method_defined? :to_monthly %>
+<div class="change_span">
+  <% if report.class.method_defined? :to_monthly %>
   <%= link_to "月間", "#{report.to_monthly}" %>
-<% else %>
-  <a class="inline-block" href="#">月間</a>
-<% end %>
-<% if report.class.method_defined? :to_weekly %>
+  <% else %>
+  <a class="inline-block" href="#" style="font-weight: bold;">月間</a>
+  <% end %>
+  <span class="center">|</span>
+  <% if report.class.method_defined? :to_weekly %>
   <%= link_to "週間", "#{report.to_weekly}" %>
-<% else %>
-  <a class="inline-block" href="#">週間</a>
-<% end %>
+  <% else %>
+  <a class="inline-block" href="#" style="font-weight: bold;">週間</a>
+  <% end %>
+</div>

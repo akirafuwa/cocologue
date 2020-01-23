@@ -14,7 +14,7 @@ class DiariesController < ApplicationController
         redirect_to "/dashboard/#{@diary.diary_date.strftime("%Y-%m")}"
       end
     rescue ActiveRecord::RecordNotUnique
-      flash.now[:danger] = 'メッセージの投稿に失敗しました。'
+      flash.now[:danger] = 'メッセージの投稿に失敗しました。(日付の重複)'
       render 'diaries/new'
     end
   end
