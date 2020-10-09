@@ -1,6 +1,6 @@
 ## 📗体調管理アプリ　COCOLOGUE（こころーぐ）
 
-メンタル疾患当事者のための体調記録サービスです。[こちら](https://coco-logue.herokuapp.com/login)からアクセスできます。
+自分の体調を把握したい人のための体調記録サービスです。[こちら](https://coco-logue.herokuapp.com/login)からアクセスできます。
 
 体調を５段階で記録し、その推移をグラフで振り返ることができます。その他にも、日記の投稿・表示が可能です。
 
@@ -18,7 +18,11 @@
 
 ### **https://coco-logue.herokuapp.com/login**
 
+<<<<<<< HEAD
 <br>
+=======
+
+>>>>>>> fb0d3fed2378896a47b84e537357f8b5e9264177
 
 ## 📗アプリの機能
 
@@ -36,7 +40,11 @@
 
 体調の項目として、活動・気分・食欲それぞれについて５段階で記録する。
 
+<<<<<<< HEAD
 <br>
+=======
+
+>>>>>>> fb0d3fed2378896a47b84e537357f8b5e9264177
 
 #### **3. 日記の一覧を表示**
 
@@ -52,6 +60,11 @@
 
 ## 📗使用している技術
 
+<<<<<<< HEAD
+=======
+------
+
+>>>>>>> fb0d3fed2378896a47b84e537357f8b5e9264177
 - HTM/CSS
 -  Chart.js
 - jQuery
@@ -127,18 +140,3 @@ Use Ctrl-C to stop
 ブラウザからアクセスします。
 
 http://localhost:3000
-
-
-
-## 📗製作者
-
-- [Wantedly](https://www.wantedly.com/users/298937)
-- [Github](https://github.com/akira5316)
-
-
-
-
-
-
-
-##  
